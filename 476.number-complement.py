@@ -10,12 +10,11 @@
 # @lc code=start
 class Solution:
     def findComplement(self, num: int) -> int:
-        bitMask = num
-        bitMask |= bitMask >> 1
-        bitMask |= bitMask >> 2
-        bitMask |= bitMask >> 4
-        bitMask |= bitMask >> 8
-        bitMask |= bitMask >> 16
-        return bitMask ^ num
+        bitToGo, times = 1, num
+        while times:
+            num ^= bitToGo
+            bitToGo = bitToGo << 1
+            times = times >> 1
+        return num
 # @lc code=end
 
